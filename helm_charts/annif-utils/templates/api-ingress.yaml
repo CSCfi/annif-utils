@@ -1,0 +1,20 @@
+{{- if eq .Values.ingressType "Ingress" }}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  labels:
+    app: annif
+spec:
+  rules:
+    - host: {{ .Values.ingressHost }}
+      http:
+        paths:
+          - backend:
+              serviceName: api
+              servicePort: 5000
+
+{{- end}}
