@@ -1,4 +1,5 @@
-# Default values for annif-utils
+# Default values for annif-utils. Works on local Docker/Kubernetes. If used with external cluster, Ingress values should be changed.
+# ProjectTarballUrl refers to tar.gz package containing data directory and project configuration file.
 
 # images
 apiImage: quay.io/natlibfi/annif:latest
@@ -9,10 +10,10 @@ apiImagePullPolicy: Always
 # Replica counts for api and worker
 apiReplicas: 1
 
-# Ingress type can be 'Ingress' for K8s ingresses or 'Route' for OpenShift Routes
+# Ingress type can be 'Ingress' for Kubernetes ingresses or 'Route' for OpenShift Routes
 ingressType: Ingress
 
-# Ingress host
+# Ingress host, 'localhost' works on Docker/Kubernetes. Change if you need external cluster
 ingressHost: localhost
 
 # ----------------------------------------------------------------------------

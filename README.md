@@ -2,8 +2,28 @@
 
 Work in progress.
 
-Currently has deploys Annif API with Helm to a Kubernetes/OKD cluster. Annif project data is populated from a tarball by
-an initContainer when the pod starts.
+Helm chart to deploy Annif API to a Kubernetes/OKD cluster. Annif project data is populated from a tarball by
+an initContainer when the pod starts. For general user guide, refer [documentation](https://github.com/NatLibFi/Annif/wiki/Getting-started)
+
+If you are using external system for training new models, you should manually restart api-pod to force application to load new model data. 
+
+## Setup the environment
+### Docker/Kubernetes
+Kubernetes on Docker is for testing purposes, for local use we recommend to use original Docker container from [NatLibFi Github](https://github.com/NatLibFi/Annif/wiki/Usage-with-Docker)
+
+For local Docker/Kubernetes use you need kubectl (or oc) and ingress controller installed.
+
+Here is how to deploy nginx ingress controller for Docker for Mac
+https://kubernetes.github.io/ingress-nginx/deploy/
+
+### OpenShift
+oc should be installed 
+
+### Both Kubernetes and Openshift:
+
+For installation to Kubernetes and Openshift you need Helm installation:
+[Install Helm](https://helm.sh/docs/intro/install/)
+
 
 ## Configuration
 
@@ -34,8 +54,8 @@ oc login # use whatever you usually do to start a session to OKD
 oc new-project annif-utils 
 ```
 
-Create a file for custom values, set at least ingressType and ingressHost. Choose a unique name for your ingress (maybe
-match the namespace you created earlier). Here is example `example-annif-utils-rahti.yaml`
+Create a copy of a 'values.yaml' file for custom values, set at least ingressType and ingressHost. Choose a unique name for your ingress (maybe
+match the namespace you created earlier). Here is example `example-custom-values.yaml`
 
 ```yaml
 ingressType: Route
@@ -45,16 +65,16 @@ ingressHost: example-annif-utils.rahtiapp.fi
 Deploy with Helm, using our custom values:
 
 ```bash
-helm install annif-utils helm_charts/annif-utils -f example-annif-utils-rahti.yaml 
+helm install annif-utils helm_charts/annif-utils -f example-custom-values.yaml 
 ```
 
 ## Change deployment parameters
 
 You can change single parameter with command below. Please note that by using command with just --set option would use 
 default values from values.yaml file instead of your custom values-file for the other parameters. That's why you should 
-include also the `-f example-annif-utils-rahti.yaml` part.
+include also the `-f example-custom-values.yaml` part.
 
 
 ```bash
-helm upgrade annif-utils helm_charts/annif-utils --set projectsTarballUrl=https://<<your_custom_url>> -f example-annif-utils-rahti.yaml
+helm upgrade annif-utils helm_charts/annif-utils --set projectsTarballUrl=https://<<your_custom_url>> -f example-custom-values.yaml
 ```
