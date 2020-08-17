@@ -1,4 +1,4 @@
-###  VirtualBox for Annif
+#  VirtualBox for Annif
 
 If cPouta and Rahti environment at CSC is not familiar to explore Annif, you can use Oracle VM VirtualBox which is a free and  open source software for virtualization. The software  has to be installed on your work station in order to explore capabilities of Annif. More information about the VirtualBox can be found [here](https://www.virtualbox.org/manual/ch01.html).
 
@@ -55,23 +55,21 @@ echo "ensemble methods use multiple learning algorithms to obtain better predict
 
 echo "ensemble methods use multiple learning algorithms to obtain better predictive performance" | annif suggest yso-nn-ensemble-en
 
-
 echo "ensemble methods use multiple learning algorithms to obtain better predictive performance" | annif suggest yso-fasttext-en
 
 echo "ensemble methods use multiple learning algorithms to obtain better predictive performance" | annif suggest vw-multi-en
-
 
 echo "ensemble methods use multiple learning algorithms to obtain better predictive performance" | annif suggest pav-en
 
 ```
 
-some tips:
+## some tips:
 - if you can't run pav-en backend as the process is killed during execution, try increasing RAM memory
 - if you need to install any sofwtare/tools, us admin password as 'annif'
 
-References:
+## References:
 - https://github.com/NatLibFi/Annif/wiki
 
-Funding:
+## Funding:
 
-![](./EU_logo.png)
+<img src="./EU_logo.png" width="30%">
