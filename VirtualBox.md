@@ -2,7 +2,7 @@
 
 If cPouta and Rahti environment at CSC is not familiar to explore Annif, you can use Oracle VM VirtualBox which is a free and  open source software for virtualization. The software  has to be installed on your work station in order to explore capabilities of Annif. More information about the VirtualBox can be found [here](https://www.virtualbox.org/manual/ch01.html).
 
-The  VirtualBox image for Annif was built on ubuntu (64 bit) operating system and  can be downloaded from  from CSC's object storage system, called Allas. It  is a ~9GB zip file so it can take a while to download.
+The  VirtualBox image for Annif was built on ubuntu (64 bit) operating system and  can be downloaded from  from CSC's Alla object storage system. The image is a ~9GB zip file at the moment and can therefore take a while to download.
 
 The following are minimum instructions to get started with Annif VirtualBox:
 
@@ -14,7 +14,7 @@ The following are minimum instructions to get started with Annif VirtualBox:
 - Verify the settings in the center window and make any changes if needed
 - Click import button at the bottom to allow VirtualBox to import the file and configure it for use
 
-The annif machine should now appear at the list of VMs on the left side. Select it and press Start. A new window should appear and after a while, you should see a Linux (Xubuntu) desktop. Open a terminal window (by double-clicking on the Terminal desktop icon). You can also change the keyboard layout now from the upper right corner.
+The annif machine should now appear at the list of VMs on the left side. Select it and press Start. A new window should appear and after a while, you should see a Linux (ubuntu) desktop. Open a terminal window (by double-clicking on the Terminal desktop icon). You can also change keyboard layout from the upper right corner.
 
 Open terminal and navigate to the folder where annif folder including tutorial data is located.
 
@@ -63,9 +63,9 @@ echo "ensemble methods use multiple learning algorithms to obtain better predict
 
 ```
 
-## some tips:
-- if you can't run pav-en backend as the process is killed during execution, try increasing RAM memory
-- if you need to install any sofwtare/tools, us admin password as 'annif'
+### some tips/hints:
+- try increasing RAM memory if pav-en backend process is killed during execution 
+- us admin password as 'annif' if needed
 
 ## References:
 - https://github.com/NatLibFi/Annif/wiki
