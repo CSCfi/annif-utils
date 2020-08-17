@@ -78,3 +78,7 @@ include also the `-f example-custom-values.yaml` part.
 ```bash
 helm upgrade annif-utils helm_charts/annif-utils --set projectsTarballUrl=https://<<your_custom_url>> -f example-custom-values.yaml
 ```
+
+## Funding:
+
+<img src="./EU_logo.png" width="30%">
