@@ -28,7 +28,7 @@ Above docker-compose deployment assumes that all the information related to proj
 
 ## Access Annif application via browser
 
-Once Annif is successfully deployed, enter http://externalIP:8080/ in a browser to access Annif webpage.
+Once Annif is successfully deployed, Navigate to http://externalIP:8080/ on web browser to access Annif webpage.
 
 ## Funding:
 
