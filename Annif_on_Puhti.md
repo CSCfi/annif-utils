@@ -23,9 +23,9 @@ and then copy the singularity image (annif.simg) to your work space (for example
 
 ## Run Annif singularity application as a batch job
 
-One can find instructions for training, testing and evaluating relevant ML and NLP models on Annif [wiki page](https://github.com/NatLibFi/Annif/wiki).  Singularity was installed on compute nodes on Puhti and Annif singularity application can be deployed as a batch job.
+One can find instructions for training, testing and evaluating relevant ML and NLP models on Annif [wiki page](https://github.com/NatLibFi/Annif/wiki).  
 
-An example batch script for training a model (e.g., omikuji parabel model) inside Puhti as a singularity application  as  shown below:
+Singularity was installed on compute nodes on Puhti and Annif singularity application can be deployed as a batch job. A toy example batch script for training a model (e.g., omikuji parabel model) inside Puhti as a singularity application is shown below:
 
 ```
 #!/bin/bash
@@ -49,7 +49,7 @@ echo "random fortunes written on strips of paper at Shinto shrines and Buddhist 
 
 ## (Optionally) upload trained models on Puhti to Allas
 
-Allas is CSC's objects storage environment. One can upload `annif_projects` to allas and can later be deployed as a web application , e.g., on Rahti/cPouta. `annif_projects` folder should include a data folder with trained projects and vocabs,  a configuration file with  projects and their backends stored inside projects.cfg file and optionally a mauidata folder.
+Allas is a objects storage environment at CSC. One can upload `annif_projects` to allas and can later be deployed as a web application , e.g., on Rahti/cPouta. `annif_projects` folder should include a data folder with trained projects and vocabs,  a configuration file with  projects and their backends stored inside projects.cfg file and optionally a mauidata folder.
 
 ```
 module load allas
