@@ -55,7 +55,7 @@ Allas is a objects storage environment at CSC. One can upload `annif_projects` t
 module load allas
 allas-conf --mode s3cmd
 tar -xavf annif_yso_singularity.tar.gz annif_yso_singularity/
-s3cmd mb s3://annif_singularity
+# s3cmd mb s3://annif_singularity # First time when you create a bucket
 s3cmd put annif_yso_singularity.tar.gz s3://annif_singularity --acl-public
 
 ```
