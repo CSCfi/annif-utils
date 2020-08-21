@@ -8,7 +8,7 @@ The following are minimum instructions to get started with Annif VirtualBox:
 
 - Download and install Oracle VirtualBox on your local machine
   from [here](https://www.virtualbox.org/wiki/Downloads)
-- Download OVA file of Annif VM from Allas object storage [here](www)
+- Download OVA file of Annif VM from Allas object storage [here](https://a3s.fi/annif_singularity/annif_tutorial.ova)
 - Start up the VirtualBox software on your computer.
 - Go to the menu bar of main window and then import OVA file as below: Select File -> Import Appliances -> select 'local file system' (from source panel on the left) -> import .ova file
 - Verify the settings in the center window and make any changes if needed
