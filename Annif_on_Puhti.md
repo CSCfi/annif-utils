@@ -15,7 +15,7 @@ singularity build annif.simg docker://localhost:5000/annif:latest
 
 # or simply
 
-singularity build  -name annif.simg  quay.io/natlibfi/annif
+singularity build annif.simg  docker://quay.io/natlibfi/annif
 
 ```
 
