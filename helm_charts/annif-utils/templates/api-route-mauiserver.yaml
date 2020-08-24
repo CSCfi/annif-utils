@@ -2,19 +2,20 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: api
+  name: mauiserver
   labels:
     app: annif
 spec:
   {{- if .Values.ingressHost }}
   host: {{ .Values.ingressHost }}
   {{- end }}
+  path: /mauiserver
   to:
     kind: Service
     name: api
     weight: 100
   port:
-    targetPort: api
+    targetPort: mauiserver
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge

@@ -2,12 +2,13 @@
 # ProjectTarballUrl refers to tar.gz package containing data directory and project configuration file.
 
 # images
-apiImage: quay.io/natlibfi/annif:latest
+apiImageAnnif: quay.io/natlibfi/annif:latest
+apiImageMauiserver: quay.io/natlibfi/mauiserver:latest
 
 # To avoid remote pulling with local kubernetes, you can set this to 'IfNotPresent'
 apiImagePullPolicy: Always
 
-# Replica counts for api and worker
+# Replica counts for api
 apiReplicas: 1
 
 # Ingress type can be 'Ingress' for Kubernetes ingresses or 'Route' for OpenShift Routes
@@ -16,7 +17,10 @@ ingressType: Ingress
 # Ingress host, 'localhost' works on Docker/Kubernetes. Change if you need external cluster
 ingressHost: localhost
 
+# Set non-root user in local Kubernetes
+securityContext: "{ runAsUser: 65534,  runAsGroup: 0 }"
+
 # ----------------------------------------------------------------------------
 # Application content
 
-projectsTarballUrl: << url to the tar package >>
+#projectsTarballUrl: << url to the tar package >>
