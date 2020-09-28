@@ -18,23 +18,38 @@ spec:
         app: annif
       name: api
     spec:
-      # download project data if defined
-      {{- if .Values.projectsTarballUrl }}
       initContainers:
+        # copy tomcat webapps to a local scratch volume for write access
+        - name: prepare-maiuserver-webapps
+          image: {{ .Values.apiImageMauiserver }}
+          volumeMounts:
+            - mountPath: /webapps
+              name: tomcat-temp
+              subPath: webapps
+          command: ["/bin/bash"]
+          args:
+            - -c
+            - cp -r /usr/local/tomcat/webapps/* /webapps/.
+      {{- if .Values.projectsTarballUrl }}
+        # download project data if download url is defined and a successful download has not been done before
         - name: project-downloader
-          image: {{ .Values.apiImage }}
+          image: {{ .Values.apiImageAnnif }}
           volumeMounts:
             - mountPath: /annif-projects
               name: annif-vol
           command: ["/bin/bash"]
           args:
             - -c
-            - curl {{ .Values.projectsTarballUrl }} | tar xz -C /annif-projects
+            - >
+              if [[ ! -e /annif-projects/DOWNLOAD_SUCCESSFUL ]]; then
+                curl {{ .Values.projectsTarballUrl }} | tar xz -C /annif-projects;
+                date -Is > /annif-projects/DOWNLOAD_SUCCESSFUL;
+              fi
       {{- end }}
       containers:
-        - name: api
+        - name: annif
           env: []
-          image: {{ .Values.apiImage }}
+          image: {{ .Values.apiImageAnnif }}
           imagePullPolicy: {{ .Values.apiImagePullPolicy }}
           command: ["annif"]
           args:
@@ -45,7 +60,7 @@ spec:
               cpu: 100m
               memory: 200Mi
             limits:
-              cpu: 1900m
+              cpu: 1000m
               memory: 4Gi
           ports:
             - containerPort: 5000
@@ -64,7 +79,52 @@ spec:
           volumeMounts:
             - mountPath: /annif-projects
               name: annif-vol
+
+        - name: mauiserver
+          image: {{ .Values.apiImageMauiserver }}
+          imagePullPolicy: {{ .Values.apiImagePullPolicy }}
+          env: []
+          command:
+            - catalina.sh
+            - run
+          resources:
+            requests:
+              cpu: 100m
+              memory: 200Mi
+            limits:
+              cpu: 1000m
+              memory: 4Gi
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 3
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 3
+            timeoutSeconds: 3
+          volumeMounts:
+            - mountPath: /mauidata
+              name: annif-vol
+              subPath: mauidata
+            - mountPath: /usr/local/tomcat/conf/Catalina/localhost
+              name: tomcat-temp
+              subPath: conf_Catalina_localhost
+            - mountPath: /usr/local/tomcat/webapps
+              name: tomcat-temp
+              subPath: webapps
+          ports:
+            - containerPort: 8080
+
       volumes:
+        # persistent volume for data
         - name: annif-vol
           persistentVolumeClaim:
             claimName: annif-pvc
+        # temporary volume for mauiserver for directories that need to be writable
+        - name: tomcat-temp
+          emptyDir: {}
+      {{ if .Values.securityContext }}
+      securityContext: {{ .Values.securityContext }}
+      {{ end }}

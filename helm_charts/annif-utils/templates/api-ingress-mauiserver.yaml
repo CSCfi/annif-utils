@@ -1,0 +1,20 @@
+{{- if eq .Values.ingressType "Ingress" }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-mauiserver
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  labels:
+    app: annif
+spec:
+  rules:
+    - host: {{ .Values.ingressHost }}
+      http:
+        paths:
+          - path: /mauiserver
+            backend:
+              serviceName: api
+              servicePort: 8080
+
+{{- end}}

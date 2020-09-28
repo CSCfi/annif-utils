@@ -60,6 +60,7 @@ match the namespace you created earlier). Here is example `example-custom-values
 ```yaml
 ingressType: Route
 ingressHost: example-annif-utils.rahtiapp.fi
+securityContext: {}
 ```
 
 Deploy with Helm, using our custom values:

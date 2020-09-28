@@ -8,8 +8,11 @@ metadata:
     app: annif
 spec:
   ports:
-    - name: api
+    - name: annif
       port: 5000
       targetPort: 5000
+    - name: mauiserver
+      port: 8080
+      targetPort: 8080
   selector:
     name: api
