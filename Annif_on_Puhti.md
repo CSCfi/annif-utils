@@ -18,8 +18,21 @@ singularity build annif.simg docker://localhost:5000/annif:latest
 singularity build annif.simg  docker://quay.io/natlibfi/annif
 
 ```
-
 and then copy the singularity image (annif.simg) to your work space (for example, to scratch directory) on Puhti
+
+Alternatively, it is possible to convert annif docker image to singularity using sbatch script as below:
+```
+#!/bin/bash
+#SBATCH --time=0:30:00
+#SBATCH --partition=small
+#SBATCH --account=project_xxx
+#SBATCH --mem-per-cpu=2000
+
+export SINGULARITY_CACHEDIR=$PWD
+export TMPDIR=$PWD
+singularity build annif.simg  docker://quay.io/natlibfi/annif
+
+```
 
 ## Run Annif singularity application as a batch job
 
